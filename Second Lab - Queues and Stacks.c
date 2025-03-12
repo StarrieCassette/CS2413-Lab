@@ -63,19 +63,23 @@ void myStackFree(MyStack* obj) {
 typedef struct {
     int *input;
     int *output;
+    int *buffer;
     int inputTop;
     int outputTop;
+    int bufferTop;
     int capacity;
 } MyQueue;
 
 
 MyQueue* myQueueCreate() {
     MyQueue* queue = (MyQueue*)malloc(sizeof(MyQueue));
-    queue->capacity = 100; // Initial capacity
+    queue->capacity = 100; 
     queue->input = (int*)malloc(queue->capacity * sizeof(int));
     queue->output = (int*)malloc(queue->capacity * sizeof(int));
+    queue->buffer = (int*)malloc(queue->capacity * sizeof(int));
     queue->inputTop = -1;
     queue->outputTop = -1;
+    queue->bufferTop = -1;
     return queue;
 }
 
