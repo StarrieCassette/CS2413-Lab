@@ -61,8 +61,8 @@ void myStackFree(MyStack* obj) {
 
 //232. Implement Queue using Stack
 typedef struct {
-    int *stack1;
-    int *stack2;
+    int *s1;
+    int *s2;
     int top1;
     int top2;
     int capacity;
@@ -72,8 +72,8 @@ typedef struct {
 MyQueue* myQueueCreate() {
     MyQueue* queue = (MyQueue*)malloc(sizeof(MyQueue));
     queue->capacity = 100;
-    queue->stack1 = (int*)malloc(queue->capacity * sizeof(int));
-    queue->stack2 = (int*)malloc(queue->capacity * sizeof(int));
+    queue->s1 = (int*)malloc(queue->capacity * sizeof(int));
+    queue->s2 = (int*)malloc(queue->capacity * sizeof(int));
     queue->top1 = -1;
     queue->top2 = -1;
     return queue;
@@ -86,21 +86,21 @@ bool myQueueEmpty(MyQueue* obj);
 void myQueueFree(MyQueue* obj);
 
 void myQueuePush(MyQueue* obj, int x) {
-    obj->stack1[++obj->top1] = x;
+    obj->s1[++obj->top1] = x;
 }
 
 int myQueuePop(MyQueue* obj) {
     myQueuePeek(obj);
-    return obj->stack2[obj->top2--];
+    return obj->s2[obj->top2--];
 }
 
 int myQueuePeek(MyQueue* obj) {
     if (obj->top2 == -1) {
         while (obj->top1 != -1) {
-            obj->stack2[++obj->top2] = obj->stack1[obj->top1--];
+            obj->s2[++obj->top2] = obj->s1[obj->top1--];
         }
     }
-    return obj->stack2[obj->top2];  
+    return obj->s2[obj->top2];  
 }
 
 bool myQueueEmpty(MyQueue* obj) {
@@ -109,7 +109,7 @@ bool myQueueEmpty(MyQueue* obj) {
 }
 
 void myQueueFree(MyQueue* obj) {
-    free(obj->stack1);
-    free(obj->stack2);
+    free(obj->s1);
+    free(obj->s2);
     free(obj);
 }
