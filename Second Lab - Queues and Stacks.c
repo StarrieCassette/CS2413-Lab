@@ -61,10 +61,8 @@ void myStackFree(MyStack* obj) {
 
 //232. Implement Queue using Stack
 typedef struct {
-    int *s1;
-    int *s2;
-    int top1;
-    int top2;
+    int *s1, *s2;
+    int top1, top2;
     int capacity;
 } MyQueue;
 
